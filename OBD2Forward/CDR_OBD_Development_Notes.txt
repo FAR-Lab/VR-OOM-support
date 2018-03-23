@@ -1,0 +1,41 @@
+CDR OBD Development Notes
+By: Nik Martelaro
+
+Have been trying to get OBD reading working with one of the OBD readers in the
+lab.
+
+-- OpenXC Cross Chasm C5 --
+http://openxcplatform.com/vehicle-interface/hardware.html#crosschasm-c5-ble
+This module was what I used with a Nissan Q50, and it worked very well for
+streaming data over bluetooth. However, I have not been able to get the unit
+programmed and reading data here at the lab on either the Jeep or the eGolf.
+
+I have tried using the 7.2 and 7.0 versions of the firmware, however the unit
+does not connect on my MacBook Pro using OS X Yosemite. The device can stream
+simulated data over the USB port, but nothing when I plug into a car OBD port.
+
+-- OBDLink SX USB ScanTool --
+https://www.scantool.net/obdlink-sx-scan-tool/
+This unit is a USB ELM v1.37 OBD device that allows simple serial communication.
+I was able to get the unit working through a USB serial interface using 115200
+baudrate. I tested the device in Cool Term, sending queries by hand such as 010c
+for RPM.
+
+I also found a NodeJS Library that connects, polls, reads, and translates the
+data into a human readable JSON format.
+https://github.com/EricSmekens/node-serial-obd
+
+The code works well using the provided example and polling seemed to work well
+for 2 PIDs (speed and RPM) at a rate of 100ms or 10Hz and should work at 40ms.
+
+The code take a few seconds to start up and then begins reading data at the
+specified rate.
+
+-- Useful data --
+OBD 2 doesn't provide a lot of data that is very useful for out studies. Most of
+the data you can get is system diagnostics like O2 sensors. However, there are
+some data data are useful and it is very nice to have directly from the car.
+
+* Vehicle Speed - Speed in km/hr
+* Engine RPM - Rotations per minute that the engine is running
+* Absolute throttle position - how much the driver is pushing the throttle

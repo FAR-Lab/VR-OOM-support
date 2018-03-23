@@ -1,0 +1,22 @@
+{
+  "name": "serialobdtest",
+  "version": "1.0.0",
+  "description": "basic serial test written by Nikolas Martelero",
+  "main": "obdTest.js",
+  "dependencies": {
+    "serial-obd": "^0.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node obdTest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "Nikolas Martelero",
+  "license": "ISC"
+}
